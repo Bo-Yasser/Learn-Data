@@ -1,0 +1,55 @@
+# 1
+
+all()                 # True
+any()                 # False
+bin() 
+id()
+
+
+# 2
+
+print()   
+sep=""                # default ( , sep= "space" ) 
+end=""                # default ( , end= "\n" ) 
+
+
+sum()                 # (iterable ,00)
+round()               # (number, numofdigits)
+range()               # (start, end, step)
+sorted(#iter#)#[-1]///[0]#   #sort iterable used [-1] to get max num and [0] to get min num#
+ 
+# 3
+
+abs()
+
+pow()                 # (num, exp, mod)
+
+min()
+max()
+
+slice()               # (start, end, step)
+
+# 4
+
+map()
+filter()  # True                           # all (func, iterable)
+reduce()  # from functools import reduce
+
+zip()
+
+# 5
+
+enumerate() #3dad #(iterable, start)
+help()
+reversed()
+
+# 6
+eval() 
+#use to exceute or implementation code in quations "" 
+#or we can say remove "" and execute code# 
+
+# 7
+chr() #get CorresPonding ASCII for any char#
+ord() #get what char equal in CorresPonding ASCII#  #3ks chr()#
+
+

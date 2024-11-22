@@ -1,0 +1,12 @@
+assert #sometihng to test#, #message if give False# 
+
+
+import unittest
+
+class #Name#(unittest.TestCase):
+	#should write here as methods to use unittest#
+
+assertTrue(operation, result, msg)
+assertFalse(operation, result, msg)
+assertGreater(num1, num2, msg)
+assertNotIsInstance(obj, class, msg)

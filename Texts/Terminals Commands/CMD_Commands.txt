@@ -1,0 +1,219 @@
+https://ss64.com/ #website for all commands in every system# 
+
+
+####can use with every commands####
+.. #mean back#
+.  #mean current directory#
+\  #mean back to root or partition#
+*  #mean all#
+>  #mean create file or wrtie with override#
+>> #mean create file or write without override#
+"" #"" to write with space "folder name"#
+&& #mean #and# ex:mv && cd# to do many commands in same time#
+#command# | clip #to storage output in windwos clip board# 
+___________________________________________
+
+######## (((( Windows Commands )))) ######## 
+___________________________________________
+
+######## terminal control ######## 
+
+help #command#  #or# #command# /? #for get guide to any command#
+cls                #clear in win#
+title #name#   #change cmd title#
+ctrl + c #to stop or kill any process#  
+exit
+
+
+___________________________________________
+alias         #show all aliases commands and create new aliases#
+
+alias #alias#=#command or any thing# #create alias to any thing#
+alias /d     #delete any alias#
+
+___________________________________________
+color              #deafault#
+color 00           #change font color#
+color #00#00#      #background#font#
+color #00##c#      #change font and background color#
+
+___________________________________________
+""terminal programms commands""
+osk     #open on screen keyboard#
+mspaint #open microsoft paint#
+code	#open visual studio code#
+
+___________________________________________
+
+###########################################
+___________________________________________
+
+######## system control ######## 
+
+--version  #version for anything#
+systeminfo #show system info#
+whoami     #show user#
+sfc scannow   #start full scan and repai#
+
+shutdown #/s /r /t#     #to shut down restart with time or without#
+/s                      #to shut down#
+/r                      #to restart#
+/t #00#                 #close with time#
+
+
+___________________________________________
+tasklist                     #list for tasks#
+taskkill /pid (#proccess# #or# #pid num#) /f  #stop or kill tasks#
+/pid #flag to distinct the process#
+/f   #flag for forced close to for process#
+
+
+___________________________________________
+set       #show system veriables#
+set #ver# #add system veriable for current session#
+setx 	  #add veriables to system veriables permanently#
+
+
+___________________________________________
+
+###########################################
+___________________________________________
+
+######## disk control ######## 
+chkdsk #partition# /f #scan partition auto fix with /f#  
+
+diskpart          #start disk part mode#
+##after disk part mode##
+list disk         #show all disks#
+select disk #00#  #to select one disk#
+format disk       
+create partition
+
+
+___________________________________________
+
+###########################################
+___________________________________________
+
+######## network & connections ######## 
+
+ipconfig          #get all ip#
+ping #site# -t	  #get ping for any site can use -t for unlimited ping#
+ping > #file# #to write ping for any website in text#
+
+#################
+netstat     #show all connections & ip & protocols & ports#                    
+netstat -a  #show all active connections#
+netstat -n  #show ip and port number#	
+netstat -o  #show pid to# 
+netstat -b  #show all programms and process ip and protocols#
+
+
+
+
+___________________________________________
+
+###########################################
+___________________________________________
+
+######## files & directories control ######## 
+
+
+cd chdir #show current working directory move and add directory to path#
+cd \                #to back to root or partition directly#
+cd ..               #back to previous folder#
+cd #path#:\#folder# #to go to any place directly#
+
+
+dir        #get list with all files#
+tree /a  #show all directories and sub directories#
+fc         #compare files#
+___________________________________________
+explorer       #explore all computer files#
+explorer #file or folder name#
+explorer .     #explore folder or files that im in now#
+notepad     #explore files#
+
+___________________________________________
+mkdir md #folder#            #to create folder#
+mkdir ..\ #folder name#      #to create folder in previous folder or folder in previous folder#
+mkdir #path#:\#folder name#  #to create folder anywhere with path#
+
+___________________________________________
+move #filename#            #move folder or rename if not exist#
+move #filename# .. or  ..\ #to move folder in previous folder or to folder in previous folder#
+move #filename# \          #to move folder to root or partition#
+
+rename ren #filename#
+
+
+___________________________________________
+rmdir rd       #removes a directory#
+del 	       #removes a file#	
+erase	       #removes a file#
+
+/s 	    #remove with ask#
+/q 	    #remove quietly without ask#
+
+copy 	    #copy files#
+xcopy       #copy a directory#
+robocopy    #copy a directory#
+
+repalce        		   #replaces files#
+
+___________________________________________
+
+
+echo ""    #print any thing with "" or wtih out# 
+ 
+echo >     #write in file with override the last writing#
+     #write in file if not exist create new file#
+echo >>    #write in file without override the last writing#
+
+
+
+
+___________________________________________
+type #file1# #file2# ,..  #show what inside one file or many files#
+
+type > >> 
+#copy file with words inside it to any file make new file if not exists#
+
+type nul > #file#     #create empty file with nul#
+
+type #file1# > #file2#  
+#override file if exist copy file with words if not exist# 
+
+type #file1# >> #file2# 
+#not override file copy file with words if not exist#
+
+type *              #show what inside all files# 
+type #file1# #file2# > #file#   #or#  type * > #file#
+         #copy many files words to one file create one if not exist#
+        
+more #like type but show 1 page#
+	 #can switch pages with space#
+	 #can switch lines with enter#
+	 #can back pages with b#
+	 #out from more with q#
+
+
+
+
+___________________________________________
+findstr "" #path#    #to search with words in any file#
+
+findstr ""    #path#\*  #to search in many files in one specific folder#
+findstr /s "" #path#\*  #to search in many files in one specific folder and folders inside#
+
+findstr /s "" *      #to search in many files in all directories in current directoriy#
+findstr /s "" *.txt  #to search in all files with same format#
+
+findstr /s /m "" *              #make list to files have words in all directories#
+findstr /s /m "" *.txt #path# #make list to files have words in one specific folder#
+
+/s       #used to search in many directories#
+/m       #used to make list#
+
+
+

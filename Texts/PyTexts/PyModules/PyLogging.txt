@@ -1,0 +1,18 @@
+(((logging)))
+
+basicConfig() 
+(filename="", filemode="a", format="%()s", datefmt="")
+
+#filename="#file#.log" #to select error file# #
+#filemode="default is a #append#"#
+#format= "%(asctime)s %(name)s %(levelname)s %(message)s"#
+#datefmt= "#%d %B %Y %H %M %S# >> #to foramt date and time#"
+
+critical()  
+error()		#all# >> #add error message in file#
+warning()
+
+info()
+debug()
+
+getLogger("") # return a logger with new name #rename root# # 

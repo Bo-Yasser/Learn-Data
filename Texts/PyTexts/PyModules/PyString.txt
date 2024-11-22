@@ -1,0 +1,6 @@
+import string
+
+.digits
+.ascii_letters
+.ascii_lowercase
+.asciii_uppercase

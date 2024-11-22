@@ -1,0 +1,34 @@
+____((( filesHandling )))____
+
+"r" "w" "a" "x"
+r""  / \\
+
+.name .mode .encoding
+
+open () .close()  
+
+
+.read() .readline() .readlines(print list)
+
+.write() .writelines(take list) 
+
+
+
+.truncate() # edit words by cut it 
+
+.seek() # move cursor to print from (00)
+
+.tell() # where cursor
+
+########################
+with  open() as #any#:     >> #not need for close() automatic close# 
+########################    
+
+((import os)) 
+
+os.getcwd()                     # current working directory
+os.path.abspath(__file__)       # full path
+os.path.dirname()               # current folder
+os.chdir()                      # change current working directory
+os.remove()
+

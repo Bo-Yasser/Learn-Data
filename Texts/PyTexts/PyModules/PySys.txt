@@ -1,0 +1,12 @@
+import sys
+
+sys.path              # where to look for modules
+sys.path.append(path) # add path to look for modules
+
+sys.exit()  
+#if (0) mission success if (1) (#or any number#) misson not seccess#
+
+sys.version
+sys.platform
+sys.argv     #command line arguments# 
+             #argv back [] and 0 index is name of file#

@@ -1,0 +1,195 @@
+#1
+type() str() tuple() list() set() dict()
+
+#2
+help(keywords)
+
+#3
+(*) alldt
+
+#4
+(+= , -= , *= , /= , **= , %= , //=)    a = a [operator] b >>> a [operator]= b
+
+#5
+data1[data2.index(data3) +00 : 00]
+
+#6
+print() >> new line
+
+#7
+name = "name"
+print(name[::-1])  # reverse # or # print(name[-1::-1]) 
+
+#8
+exit() #Bulit In IDE not in Python# >>better>> sys.exit()
+
+
+_____((( Boolean )))____
+
+bool()
+> >=  < <= ==  !=
+and
+or
+not 
+True = 1 False = 0
+>> 
+# >> move to right in binary or bits men al a5r y3twbr
+division on 2 n>>1 division on 2 one time n>>2 divison on 2 two times#
+
+____((( Strings )))____
+
+[00] [:] [::] 
+
+\ \\ \" \t \n \b \r _,
+""" """ 
+(((str formatting)))
++
+print(" " ,  )
+
+% %.s %d %.f  %
+
+{} {00} {00:.00} {:.s} {:,_d} {:.f} {:!<>.00}  .format()
+
+f {} { :.00}
+________________________
+((( str methods )))
+
+.lower() .islower()
+.upper() .isupper()
+.title() .istitle()
+.capitalize()
+.swapcase()
+
+.split() .rsplit() (space,str)
+.splitlines()
+"".join()
+
+.strip() .rstrip() .lstrip() (space,str)
+.expandtaps()
+
+.rjust() .ljust() (space,str)
+center()
+
+.isidentifier()
+.isalpha()
+.isalnum()
+.isdigit()
+.isspace()
+
+.index() +00
+.find()
+.startswith()
+.endswith()
+
+
+.replace()
+len()
+.count()
+.zfill()
+type()
+
+____((( Numbers )))____
+(%)
+(//)
+(*)
+abs()
+pow() (**)
+max()
+min()
+round()
+int()
+float()
+complex() (.real,imag)
+
+from math import *
+floor 
+ceil
+sqrt
+
+____((( inputs )))____
+
+input()
+
+from cs50 import get_int, get_float, get_string
+get_int()
+get_float()
+get_string()
+
+
+____((( list =[] )))____
+list [0:0] [0::0]
+.extend += +
+.append 
+.insert()
+
+.remove()
+.clear()
+.pop(00) # defult last data
+
+.index() +00
+.find()
+.count()
+
+.sort() (reverse=True)
+.reverse()
+.copy()
+
+____((( tuples () )))____
+(*)
+_,
+
+tuple += tuple conctanate
+
+.index() +00
+
+len()
+.count()
+
+
+____((( set {} )))____
+
+.union() (a | b | c)
+.update()
+
+.clear()
+.remove()
+.discard()
+.pop()
+
+.difference()  >>   (a - b)
+.difference_update()
+
+.symmetric_difference()  >>  (a ^ B)
+.symmetric_difference_update()
+
+.intersection()  >>  (a & b)
+.intersection_update()
+
+.copy()
+.add(1dt)
+
+((Boolean Value))
+
+.issubset()
+.issuperset()           
+.isdisjoint()
+
+
+____((( dictionary {} )))____
+
+.keys()
+.values()
+.items()
+.popitem()
+
+dict1 |= dict2  #use to equal two different dict values# 
+
+.get()  dict.get(dict)[key]   >>>  dict[key]   dict[dict][key]  
+
+.update()  >>  dict[key] = value
+dict.fromkeys()
+.setdefault()  
+
+.copy()
+.len() (dict[dict])
+

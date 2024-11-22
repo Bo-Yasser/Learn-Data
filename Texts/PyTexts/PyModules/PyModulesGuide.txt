@@ -1,0 +1,49 @@
+#from module import func1, func2, ...,  or from module import * 
+
+# 1
+
+dir(module)   # all func in module 
+
+---
+import myModules as ... or from myModules import func as ...
+# to avoid conflicting other modules
+---
+
+
+
+# 3
+
+## links ##
+
+https://pypi.org/
+https://docs.python.org/3/py-modindex.html
+https://pip.pypa.io/en/stable/installation/
+
+## in terminal ##
+
+-version
+pip --version  #check if pip exist and version# 
+
+
+-all packages
+pip list      #check all existing packages#
+
+
+-upgrade
+pip install #module# --upgrade 
+
+pip install --user #module# --upgrade        #any problem from user#
+
+-install
+pip install #module#  
+
+pip install module== version  #to choose version#  
+
+pip install module>< >=<=version 
+#to choose if version is newer than or older than# 
+
+pip uninstall #module#
+
+
+explorer .
+cd 

@@ -1,0 +1,22 @@
+staging area
+
+Repository مستودع
+Branch     قسم - فرع
+
+Local Repo  مستودع خاص #own to me like my pc#
+Remote Repo    #git servers like githup & gitlab#
+
+Commit     توثيق-التزام -الزام #snapshot or checkpoint in local repo#
+Clone      استنساخ   #from local repo or remote repo#
+
+Push   رفع   upload   #upload changes to remote repo#
+Pull   سحب  download #pull chnages from remote to my local#
+Pull Request         #tell other about changes to pull from local to remote# 
+
+
+Notes
+
+create repo for every project
+create A new Branch for every Feature or enhancement
+no need to connect to remote repo when working
+anyone can push and pull debend on premissions 

@@ -1,0 +1,216 @@
+https://learngitbranching.js.org/
+_______________________________________________________________
+markdown md  #way or syntax to write in .md files# 
+https://docs.github.com/en/get-started/writing-on-github
+/getting-started-with-writing-and-formatting-on-github
+/basic-writing-and-formatting-syntax
+_______________________________________________________________
+(working directory) "git add" >> 
+             >>(staging area) "git commit" >>
+                             >>(local repo) "git push">> 
+                                                       
+							 (Remote repo)
+                  
+	"git checkout"   <<(local repo)<<    <<"git fetch"<<
+	"git merge"      <<                  <<"git pull"<<     
+_______________________________________________________________
+
+
+
+#########################[[[ Git Comamands ]]]#########################
+
+git init            #initialize an empty repo in any directory#
+git clone  #link#   #to clone or download any repository# 
+git status            #to show details for my staging area#
+
+############################################################
+git remote add origin #repolink#  
+#add remote repo to git & origin is name for remote#
+
+git remote -v                 #show remote repoes#
+git remote remove #remote#   #delete any remote repo#
+
+
+############################################################
+.gitignore #file to ignore files and directories by add name in it# 
+
+*.#format#         #* use to ignore all files with same format#
+!#file#.#format#   #! use to except one file from ignored files#
+
+EX: *.log  >> !file.log  
+#this will ignored all files with .log format except file.log#
+
+
+############################################################
+git branch       #branch#  #create new branch and show all branches#
+git branch -d -D #branch#  #to delete any branch#
+git branch -m -M #branch#  #to move or rename any branch#
+
+git stash branch #branch# #stash id#
+#make new branch and delete stash and files in it from main#
+
+git checkout     #branch#  #get into any branch# 
+git checkout -b  #branch#  #create new branch and switch to it# 
+git switch -c    #branch#  #create new branch and switch to it#
+
+############################################################
+
+git add             #to track or include any files to staging area#
+git add -f --force  #add ignored files without erase from .gitignore#
+
+############################################################
+git reset head 
+#or# 
+git rm --cached       #all use to unstage files from staging area#  
+#or#
+git restore --staged 
+
+git clean -n #delete untracked cheanges -n use to know what will delete#
+git clean -f #delete untracked files or showen files in clean -n#
+
+############################################################
+
+
+git commit -m ""  #to commit any checkpoint or message about news#
+
+git revert #commit hash# -m ""
+#erase what specific commit do by make new commit without delete it# 
+
+git reset --hard #commit hash#
+#back all repo to specific commit status# 
+#by make this commit in head and delete another up commits#
+#should use --force to push#
+
+############################################################
+git log  #or# git log #branch#   
+git log --graph #or# git log --graph #branch# 
+
+git reflog #or# git reflog #branch# 
+##all use to show log or history of commits and author and date time##
+
+
+############################################################
+git merge #branch#  
+#merge branch with main do what ff merge and no ff merge automatically# 
+#if nothing change in main do what ff megre do#
+#if anything change in main do what no ff megre do#
+
+git merge --ff #branch# 
+#merge branch with main used when if nothing change in main# 
+#and when want keep history of log without merge commit#
+
+git merge --no-ff #branch#  
+#merge branch with main used when if anything change in main#
+#and when want keep history of log with merge commit# 
+
+git merge --squash
+#merge branch with main used when wouldnt to keep history#
+#and not done until commit changes# 
+______________________________
+get rebase #branch# 
+#rebase branch with simple and clean tree wtihout merge commit#
+#edit and change in main history show as normal commit# 
+#by add all commits  and changes in top of main history#
+#look more simple and more clean but in tracking process for history 
+#will be more complix than merge#
+
+############################################################
+git tag                     #to show tags#
+
+git tag -l #v*.0#           #to show specific group for tags as list#
+
+git tag #tag#    #to make light weight tag take commit msg as own msg#
+
+git tag -a #tag# -m ""      #to make annotated tag make a new msg#
+
+git tag -d #tag#            #to delete tag from local repo#
+
+git push origin -d --delete #to delete tag from remote repo#
+
+git push origin #tag#
+
+
+############################################################
+
+git push #Remote# #Local#    #push files and changes to remote#
+git push -u #Remote# #Local# #pull push files and changes to remote#
+git push #Remote# #Local# -f --force 
+#to update and delete changes use after use git reset# 
+
+git pull  #Remote# 
+#get updates from remote and mergeing them#
+#no need to git merge after use git pull mergeing automaticlly#
+#pull do what fetch do and merge changes automatic#
+ 
+git fetch #Remote# 
+#get updates from remote without mergeing them#
+#should git merge origin/branch after use gitfetch#
+
+############################################################
+
+
+git help config      #manual of git config commands#
+
+git config --list -l list          #check list of configs#
+git config --list -l --show-origin #get all config paths#
+
+git config --global --local #var#   #to display what variable equals#
+git config --global --local #var# "#name#" #to set what variable equals#
+
+git config --global --local #var# ""     #to erase what variable equal#
+git config --global --local --unset #var# #to unset or delete variable#
+
+git config --global --edit #to open editor and edit config in editor#
+
+git config --global alias.st status 
+
+############################################################
+
+git stash            #hide or stash uncommited changes to stash box#
+git stash save "msg" #hide or stash uncommited changes to stash box with msg#
+
+git stash list 	    #stashes list#
+
+git stash pop         #pop all changes form stash list#
+git stash pop #id#    #pop specific change form stash list#	
+#restore last uncommited change from stash box#    
+git stash apply       #do what pop do but let last change in stash box#
+
+git stash drop      #delete last change and files in stash box#
+git stash drop #id# #delete specific change and files in this stash#	
+
+git stash clear #permanently clear all changes and files in stash box#
+
+git stash show      #show what in last stash#
+git stash show #id# #show what in one specific stash#
+
+
+		
+############################################################
+
+ssh-keygen -t ed25519 -C "your_email@example.com"
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com" 
+#make public password for any acc as file rsa version or ed version#
+#ed version newer and recommended than rsa version# 
+#active by copy in github settings to SSH and GPG keys# 
+
+eval "$(ssh-agent -s)"            #to see if ssh-agent working or not#
+ssh-add ~/.ssh/#passwd file#      #add password to ssh-agent#
+ssh-add -l                        #show all keys#
+ssh-add -D                        #delete all keys#
+
+Get-Service -Name ssh-agent | Set-Service -StartupType Automatic
+Start-Service ssh-agent     
+#make ssh-agent run automatic as admin in powershell win #
+
+ssh -T git@github.com #to acces with public key after added in settings#  
+############################################################
+
+#Important Extensions#
+
+gitLens
+git history
+git graph
+
+
+                                   

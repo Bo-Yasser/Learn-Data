@@ -1,0 +1,61 @@
+break 
+continue
+pass
+
+end=""
+
+print(*data)  >> unPacking
+
+
+
+____((( if : )))____ 
+if :
+elif :                                  
+else:                                   #nested if#
+or and not  
+print("" if  elif "" else "")                            
+
+((membership operators))
+in 
+not in
+if   in :
+if   not in :
+
+
+____((( while loop )))____
+while :          
+while False :
+else: 
+
+# .pop() default Loop for all data from end and # .pop(0) From start 
+
+
+____((( for loop )))____
+for :
+range() 
+
+nested for :               dict.items()
+###########################################
+return [i for i in items if i] 
+################################################
+''.join([dict[i] if i.isdigit() else i for i in string])
+
+____((( function )))____
+
+def ():
+
+return    must use print(def)
+global    (Scope)
+
+print(*data)  >> unPacking
+print(**dict) >> unpacking  
+
+def (a, b, c = "")  >>default Parameters must = "" in last argument
+
+((lambda))   # Anonymous Function
+
+.__name__
+
+
+
+

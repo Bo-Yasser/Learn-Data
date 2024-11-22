@@ -1,0 +1,48 @@
+#important words#
+
+##############################
+#### OOP concepts ####
+
+-Encapsulation   التغليف
+>getters 
+>setters
+
+-Abstraction     التجريد
+>interface
+>implementation
+
+-inheritance     الوراثة
+
+-polymorphism    تعدد الأشكال
+>overriding
+>overloading
+
+##############################
+# class attributes
+# instance attributes >> object attributes
+# method attributes   >> method mean func inside class
+
+##############################
+# 1
+# object هدف - كائن
+# paradigm نموذج                 
+# method[function] #behaviors# طريقة[وظيفة]
+# attributes[data] #properties# صفات - سمات[بيانات]ٍ
+#python is multi paradigm language# [procedural, OOP, functional]#
+# object constructor منشئ الكائن - blueprint مخطط
+# template نموذج
+
+# 2
+class فئة - صنف - نوع
+instantiate انشاء مثيل 
+instance مثال
+initialize تهيئة
+pascalCase  >> #Name#
+
+
+# 3
+
+Derived مستمد
+bound مرتبط ب
+restrict تقييد 
+pattern نمط

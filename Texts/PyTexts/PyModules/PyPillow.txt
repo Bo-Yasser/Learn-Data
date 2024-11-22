@@ -1,0 +1,19 @@
+pillow (PIL)
+
+Image
+show()
+crop()
+rotate()
+transpose()
+convert()
+save()
+
+
+
+
+
+
+
+
+
+https://pillow.readthedocs.io/en/stable/handbook/tutorial.html

@@ -1,0 +1,12 @@
+
+# Generators
+next()
+iter()
+yield()
+
+
+# Decorators 
+
+@func
+
+

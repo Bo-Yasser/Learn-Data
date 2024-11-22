@@ -1,0 +1,191 @@
+https://ss64.com/ #website for all commands in every system# 
+https://explainshell.com/
+https://www.youtube.com/@mmbesar
+
+####can use with every commands####
+.. #mean back#
+.  #mean current directory#
+/  #mean back to root or partition#
+*  #mean all#
+>  #mean create file or wrtie with override#
+>> #mean create file or write without override#
+"" #"" to write with space "folder name"#
+&& #mean #and# ex:mv && cd# to do many commands in same time# 
+
+___________________________________________
+
+######## (((( Unix Commands )))) ########
+___________________________________________
+
+######## terminal control ######## 
+
+man  #command#        #for get manual#
+info #command#	      #for get manual#
+#command# --help --h  #for get manual#
+clear #clear terminal# ctrl + l  #scroll down not clear terminal# 
+
+
+
+___________________________________________
+alias      #show all aliases commands and create new aliases#
+
+alias #alias#=#command or any thing# #create alias to any thing#
+unalias     #delete any alias#
+
+
+___________________________________________
+
+###########################################
+___________________________________________
+
+######## system control ######## 
+
+--version  #version for anything#
+shutdown
+whoami     #show user#
+hostname   #show machine name#
+
+___________________________________________
+#can use root terminal to be a root and not need sudo#
+sudo #super user do#
+
+usermod -aG sudo #username#  #add user to sudoers to can use sudo#
+
+apt install/update #install update any commands & programms & any thing#
+apt-get install/update #same as previous but more complex and accurate#
+
+passwd       #change password#
+
+
+___________________________________________
+
+###########################################
+___________________________________________
+
+######## files & directories control ######## 
+#root in linux is /#
+
+pwd                 #show current working directory# 
+cd chdir            #move in directories add folder to path#
+cd /                #to back to root or partition directly#
+cd ..               #back to previous folder#
+cd #path#:/#folder# #to go to any place directly#
+
+___________________________________________
+-a --all      #show every thing and hidden files and directories#
+-al -all      #same like previous but show more information#
+ls l dir  -a -la #get list with all files#
+tree     #show all directories and sub directories#
+
+
+___________________________________________
+locate   #search any file and directory from any where#
+nano     #open any file and directories#
+file #file#  #to show file format#
+
+
+___________________________________________
+touch#file#      #create empty file#
+
+
+echo ""    #print any thing with "" or wtih out# 
+ 
+echo >     #write in file with override the last writing#
+     #write in file if not exist create new file#
+echo >>    #write in file without override the last writing#
+
+___________________________________________
+
+
+mv #filename#            #move folder or rename if not exist#
+mv #filename# .. or  ../ #to move folder in previous folder or folder in previous folder#
+mv #filename# /          #to move folder to root or partition#
+
+
+___________________________________________
+cp  -r -d -rf #file name#    #copy files#
+
+-r  -rf     #mean #recursive# directory or file not empty#
+-d          #mean directory or file empty#
+
+rm    -r -rf -d #file name# #removes files and directories# 
+rm *.#format#   #delete all files with same format#	
+rmdir -r -rf -d #file name# #just removes directories#
+
+
+
+
+
+
+
+___________________________________________
+cat #file1# #file2# ,..  #show what inside one file or many files#
+
+cat > >> 
+#copy file with words inside it to any file make new file if not exists#
+
+cat #file1# > #file2#  
+#override file if exist copy file with words if not exist# 
+
+cat #file1# >> #file2# 
+#not override file copy file with words if not exist#
+
+cat *              #show what inside all files# 
+cat #file1# #file2# > #file#   #or#  cat * > #file#
+         #copy many files words to one file create one if not exist#
+more #like cat but show in pages with percents#
+
+less #like cat but show content in order#
+___________________________________________
+grep ""    #path#     #search with words in any file#
+
+grep "" -r            #search in many files in all directories#
+grep "" -r #path#   #search in one specific folder#
+
+grep "" -r -l          #make list to files have words in all directories#
+grep "" -r -l #path# #make list to files have words in one specific folder#
+
+
+
+
+___________________________________________
+
+###########################################
+___________________________________________
+
+######## network & connections ######## 
+
+hostname -I       #get ip adress#
+
+ifconfig  ifconfig -a      #get all interfaces about connections# 
+ifconfig #interface#       #get specific interface or network#
+ifconfig #interface# down  #disconnect specific interface or network#
+ifconfig #interface# up    #connect specific interface or network#
+
+ifconfig #interface# #parameter# #ip# #change any parameter ip for any interface or network#
+#inet is parameter for ip adress#
+
+ifconfig #interface# hw ether #mac# #change mac adress#
+#ether is parameter for mac adress# 
+
+
+
+ping #site# -t	  #get ping for any site can use -t for unlimited ping#
+ping > #file# #to write ping for any website in text#
+
+___________________________________________
+netstat     #show all connections & ip & protocols & ports#
+-r  #show all route#
+-i  #show interfaces#
+-a  #show network ports#
+-at #show tcp ports#
+-s  #show all ports#
+
+___________________________________________
+##mean nameserverlookup##
+nslook #site#  #get ip and adress for any website#
+
+nslookup -type=ns #site# #get name server for any website#
+nslookup -type=mx #site# #get mx for any website#
+
+___________________________________________

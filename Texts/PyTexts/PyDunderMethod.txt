@@ -1,0 +1,13 @@
+#any method with underscore called __#dunder or magic method#__
+
+.__class__ 
+.__init__() #called atuomatically when instantiating class# 
+.__str__()  #human readable output of the object#
+.__len__()  #returns length called when use #func# >>  len() on object#
+
+__name__ #built in veriable = "__main__" when run code directly#
+__main__ #value For __name__ when run code directly#
+
+
+__add__ #control concatinate "+" with strings and sum numbers in same class#
+__lt__ #compare between instances in same class#

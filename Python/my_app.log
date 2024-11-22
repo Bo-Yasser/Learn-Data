@@ -1,0 +1,28 @@
+CRITICAL:root:This Is Critical Message
+root
+Logger_Name = root
+
+root CRITICAL
+root CRITICAL This Is Critical Message
+2024-10-27 09:09:49,721 root CRITICAL This Is Critical Message
+2024-10-27 09:09:51,634 root CRITICAL This Is Critical Message
+2024-10-27 09:09:52,725 root CRITICAL This Is Critical Message
+(2024-10-27 09:10:58,186) => | root | CRITICAL => 'This Is Critical Message'
+
+(2024-10-27 09:18:58,853) | root | ERROR => 'This Is Error Message'
+
+(2024-10-27 09:19:35,482) | root | WARNING => 'This Is Warning Message'
+(2024-10-27 09:19:48,925) | root | WARNING => 'This Is Warning Message'
+(2024-10-27 09:19:49,399) | root | WARNING => 'This Is Warning Message'
+
+
+(27 - October - 2024, 09:26:00) | root | WARNING => 'This Is Info Message'
+(27 - October - 2024, 09:26:18) | root | WARNING => 'This Is Info Message'
+(27 - October - 2024, 09:26:19) | root | WARNING => 'This Is Info Message'
+(27 October 2024, 09:26:50) | root | WARNING => 'This Is Info Message'
+(27 October 2024, 09:26:50) | root | WARNING => 'This Is Info Message'
+
+(27 October 2024, 09:32:39) | Elzero | WARNING => 'This Is Warning Message'
+(27 October 2024, 09:32:47) | Elzero | WARNING => 'This Is Warning Message'
+(27 October 2024, 09:32:48) | Elzero | WARNING => 'This Is Warning Message'
+(27 October 2024, 09:34:02) | Elzero | WARNING => 'This Is Warning Message'

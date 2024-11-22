@@ -1,0 +1,108 @@
+#instancenaem#.#methodname#() = #Classname#.#methodname#(#Classname#())
+
+isinstance(#instance#, #class#)
+
+# 1
+
+class #Name#:            #pascalcase#
+__init__(self)           #self or can be Any name# must be first argument#
+#Name#.__class__
+
+#methods from instance take self parameter# >>def #methodname#(self)
+
+
+
+
+# 2
+ 
+###Class Methods###
+@classmethod
+#methods from class take cls as a parameter# >>def #methodname#(cls) 
+
+@staticmethod
+#take no parameter if i want and bound to class#
+
+
+
+
+# 3
+###dunder methods (magic methods)###
+
+#any method with underscore called __#dunder or magic method#__
+
+.__class__ 
+.__init__() #called atuomatically when instantiating class# 
+.__str__()  #human readable output of the object#
+.__len__()  #returns length called when use #func# >>  len() on object#
+
+
+
+# 4
+###inheritance###
+
+#Classname1#(#Classname2#)  #to access to any class data#
+####should to access to methods and to initialize in base class###
+
+
+#####################################################################
+#Classname#.__init__(self, #same parameters#,..,..)  #to call any class in initialize#
+
+super().__init__(#no self need#, #same parameters#,..,..)  #samething to call any class in initialize#
+####should to recognize data and print from initialize in base class###
+#####################################################################
+
+###multiple inheritance###
+
+#class#.mro()
+
+
+# 5
+
+###polymorphism###
+
+raise NotImplementedError() ##should override in sub classes to implement##
+
+
+
+# 6
+
+###encapsulation###
+
+#public#
+self.#attribute#    ##can access avery where##
+
+#protected#
+self._#attribute#   ##can access in base class and sub classes##
+
+#private#
+self.__#attribute#  ##can access just in base class and##
+
+#instance#._#class#__#attribute#  >>> ##for access to private attribute##
+
+###################################
+python dont do the samething with keywords
+for protect and private like other language
+################################### 
+can access and change all data from init but this just
+to know me and other developers
+###################################
+
+>>>(getters)<<<
+>>>(setters)<<< 
+
+# 7
+
+@property
+
+
+# 8
+###Abstract###
+
+from abc import ABCMeta #class#(metaclass= ABCMeta)
+#or# from abc import ABC
+
+from abc import abstractmethod
+
+
+@abstractmethod
+#method#()

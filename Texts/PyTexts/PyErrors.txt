@@ -1,0 +1,28 @@
+
+# 1
+
+raise
+Exception()  ##or##  #Error#()
+
+
+
+
+
+
+# 2
+
+try:
+except:  ##or##  except #Error#:
+
+else:
+finally:
+
+exit()  #Bulit In IDE not in Python# >> sys.exit() better 
+
+
+####
+try:
+   raise except #or# ErrorName
+
+except #ErrorName#:
+
