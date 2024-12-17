@@ -1,0 +1,4 @@
+array() #for exist iterables# 
+zeros() #create array with specific size with 0 values in indexes#
+empty() #to create empty array with specific size#
+full()  #to create array with specific size and choosen values#

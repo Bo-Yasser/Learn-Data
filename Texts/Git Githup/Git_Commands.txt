@@ -77,7 +77,7 @@ git revert #commit hash# -m ""
 #erase what specific commit do by make new commit without delete it# 
 
 git reset --hard #commit hash#
-#back all repo to specific commit status# 
+#back all repo history to previous status at specific commit# 
 #by make this commit in head and delete another up commits#
 #should use --force to push#
 

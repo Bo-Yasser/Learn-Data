@@ -89,7 +89,7 @@ class LinkedList:
         if position > self.count() or position < 0:
             raise ValueError("Position Out Of Bounds")    
         
-
+    
         current = self.head
         count = 0
         while current and count < position -1:
@@ -99,6 +99,16 @@ class LinkedList:
         new_node.next = current.next
         current.next = new_node
 
+    def reverse(self):
+        prev = None
+        current = self.head
+        while current:
+            next_node = current.next
+            current.next = prev
+            prev = current
+            current = next_node
+        self.head = prev
+    
     def replace(self, node_value, value):
         if self.is_empty():
             raise ValueError("The List Is Empty!")
@@ -165,6 +175,8 @@ if __name__ == "__main__":
     # link.clear()
     link.display()
     print(link.count())
+    link.reverse()
+    link.display()
 
     # print(link.is_empty())
 
