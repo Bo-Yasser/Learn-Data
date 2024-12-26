@@ -104,14 +104,18 @@ class LinkedStack:
     
     def display(self):
         current = self.head
+        elements = []
         if not current:
             print("Stack is Empty.")
             return
         
         while current:
-            print(current.value, end=" -> ")
+            elements.append(str(current.value))
             current = current.next
+        print(" -> ".join(elements), end=" -> ")
         print("None")
+        
+        
     
     def clear(self):
         self.head = None
@@ -124,7 +128,7 @@ class LinkedStack:
     
     def top(self):
         if not self.is_empty():
-            return f"{self.__top} ->({self.head.value})"
+            return self.head.value
     
     def size(self):
         return self.__top + 1

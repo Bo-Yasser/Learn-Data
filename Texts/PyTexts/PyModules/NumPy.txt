@@ -2,3 +2,13 @@ array() #for exist iterables#
 zeros() #create array with specific size with 0 values in indexes#
 empty() #to create empty array with specific size#
 full()  #to create array with specific size and choosen values#
+
+.fill()  #Fill the array with default values#
+
+
+dtype()      #get what equal python type from numpy types# 
+isdtype()    #check if this type a numpy type# 
+issubdtype() #Check if python type is equal to its equivalent in numpy#
+
+.item()      #convert of numpy type one element to python type#
+.tolist()    #convert a numpy array to python list with python types#

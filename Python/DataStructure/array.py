@@ -3,10 +3,11 @@
 import numpy as np
 class Array:
 
-    def __init__(self, size, type="int"):
-        self.__type = type
+    def __init__(self, size, dtype="int"):
+        self.__dtype = dtype
         self.__size = size
-        self.__arr = np.empty(self.__size, dtype=self.__type)
+        self.__arr = np.empty(self.__size, dtype=self.__dtype)
+        self.__default_value = self.__arr[0]
         self.__count = 0
 
 
@@ -15,7 +16,7 @@ class Array:
         if new_size <= self.__size:
             print("New size must be greater than the current size.")
             return
-        new_arr = np.empty(new_size, dtype=self.__type)
+        new_arr = np.empty(new_size, dtype=self.__dtype)
 
         for i in range(self.__count):
             new_arr[i] = self.__arr[i]
@@ -27,11 +28,16 @@ class Array:
 
         if num_elements + self.__count > self.__size:
             raise OverflowError("Number of Elements exceeds Array Size!")
-
+        
+        if len(elements) != num_elements:
+            raise IndexError(f"must fill {num_elements} elements forget to fill {num_elements - len(elements)}")
         for x, value in enumerate(elements):
             if x >= num_elements: 
                 break
-            self.__arr[self.__count + x] = eval(self.__type)(value)
+            if not np.issubdtype(type(value), np.dtype(self.__dtype).type):
+                raise TypeError(f"Data must be of type {self.__dtype}")
+
+            self.__arr[self.__count + x] = eval(self.__dtype)(value)
 
         self.__count += num_elements
 
@@ -40,7 +46,7 @@ class Array:
             raise ValueError("Array not initialized. Please create the array first.")
         
         if self.__count < self.__size:
-            self.__arr[self.__count] = eval(self.__type)(value)
+            self.__arr[self.__count] = value
             self.__count +=1
 
         else:
@@ -57,7 +63,7 @@ class Array:
             self.__arr[i + 1] = self.__arr[i]
 
 
-        self.__arr[index] = eval(self.__type)(value)
+        self.__arr[index] = eval(self.__dtype)(value)
         self.__count += 1
             
     def arr_delete(self, index):
@@ -67,13 +73,13 @@ class Array:
         for i in range(index, self.__count -1):
             self.__arr[i] = self.__arr[i + 1]
         
-        self.__arr[self.__count -1] = eval(self.__type)(0)
+        self.__arr[self.__count -1] = self.__default_value
         self.__count -=1
     
     def arr_merge(self, merge_arr):
         
         new_size = self.__count + len(merge_arr)
-        new_arr = np.empty(new_size, dtype=self.__type)
+        new_arr = np.empty(new_size, dtype=self.__dtype)
         
         new_arr[:self.__count] = self.__arr[:self.__count]
 
@@ -102,7 +108,8 @@ class Array:
     def arr_display(self):
         return self.__arr[:self.__count]        
 
-
+    def is_empty(self):
+        return self.__count == 0
 
 
 
@@ -110,56 +117,8 @@ class Array:
 
 
 if __name__ == "__main__":
-    array_size = int(input("Enter the size of the array: "))
-    
-    arr = Array(array_size)
-    
+    arr = Array(5)
+    arr.arr_fill(5, [1,2,3,4,5])
+    arr.arr_delete(3)
+    print(arr.arr_display())
 
-    num_elements = int(input("Enter the number of elements to fill in the array: "))
-    elements = []
-    
-    for i in range(num_elements):
-        while True:
-            try:
-                element = int(input(f"Enter element {i + 1}: "))
-            
-                elements.append(eval(arr._Array__type)(element)) 
-                break  
-            except ValueError:
-                print(f"Invalid input. Please enter a valid {arr._Array__type} value.")
-    
-    arr.arr_fill(num_elements, elements)
-    print("Array content:", arr.arr_display())
-    # append_one_element = eval(arr._Array__type)(input("Enter Just One Element to Add in last index: ")) 
-    # arr.arr_append(append_one_element)
-    # print("Array content:", arr.arr_display())
-
-    arr.arr_merge([1, 2, 3])
-    print("Array content:", arr.arr_display())
-    print("Length of elements:", arr.arr_length())
-    print("New size:", arr.arr_size())
-
-    # insert_value = eval(arr._Array__type)(input("Enter Just One Element: "))
-    # insert_index = int(input("Enter the index: "))
-    # arr.arr_insert(insert_index, insert_value)
-    # print("Array content:", arr.arr_display())
-
-
-    # delete_one_element = eval(arr._Array__type)(input("Enter One Element to delete: "))
-    # arr.arr_delete(delete_one_element)
-    # print("Array content:", arr.arr_display())
-    # print("Array size:", arr.arr_size())
-
-    # new_size = int(input("Enter The new Size: "))
-    # arr.arr_resize(new_size)
-    # print("Array content:", arr.arr_display())
-    # print("New size:", arr.arr_size())
-    # print("Length of elements:", arr.arr_length())
-    
-    # ser = int(input("Enter the key: "))
-
-    # result = arr.arr_search(ser)
-    # if result != -1:
-    #     print(f"Element found at index {result}")
-    # else:
-    #     print("Element not found")

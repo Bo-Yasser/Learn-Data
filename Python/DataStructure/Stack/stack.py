@@ -3,10 +3,11 @@
 import numpy as np 
 class Stack:
 
-    def __init__(self, size, type="int"):
-        self.__type = type
+    def __init__(self, size, dtype="int"):
+        self.__dtype = dtype
         self.__size = size
-        self.__arr = np.empty(self.__size, dtype=self.__type)
+        self.__arr = np.empty(self.__size, dtype=self.__dtype)
+        self.__default_value = self.__arr[0]
         self.__top = -1
     
     def __str__(self):
@@ -17,8 +18,8 @@ class Stack:
         if self.__top + 1 == self.__size:
             raise OverflowError("Stack Is Full.")
         
-        if not isinstance(data, eval(self.__type)):
-            raise TypeError(f"Data must be of type {self.__type}")
+        if not np.issubdtype(type(data), np.dtype(self.__dtype).type):
+            raise TypeError(f"Data must be of type {self.__dtype}")
         
         self.__top +=1
         self.__arr[self.__top] = data            
@@ -31,7 +32,7 @@ class Stack:
         
         if element is None:
             popped_element = self.__arr[self.__top]
-            self.__arr[self.__top] = eval(self.__type)(0)
+            self.__arr[self.__top] = self.__default_value
             self.__top -= 1
             return popped_element
         
@@ -42,7 +43,7 @@ class Stack:
                 for g in range(i, self.__top):
                     self.__arr[g] = self.__arr[g + 1]
                 
-                self.__arr[self.__top] = eval(self.__type)(0)
+                self.__arr[self.__top] = self.__default_value
                 self.__top -= 1
                 break
 
@@ -60,8 +61,8 @@ class Stack:
         if not isinstance(other_stack, Stack):
             raise TypeError("Can only merge with another Stack.")
         
-        if self.__type != other_stack.__type:
-            raise TypeError(f"Cannot merge stacks with different types: {self.__type} and {other_stack.__type}")
+        if self.__dtype != other_stack.__dtype:
+            raise TypeError(f"Cannot merge stacks with different types: {self.__dtype} and {other_stack.__dtype}")
         
         new_size = self.__top + 1 + other_stack.count()
         if new_size > self.__size:
@@ -74,7 +75,7 @@ class Stack:
     def peek(self, index):
         if index < 0 or index > self.__top:
             raise IndexError("Index out of range")
-        return eval(self.__type)(self.__arr[index])
+        return self.__arr[index]
     
     # Return index for specific element
     def search(self, element):
@@ -97,7 +98,7 @@ class Stack:
         return self.__top + 1 == self.__size
     
     def clear(self):
-        self.__arr[:self.__top + 1] = eval(self.__type)(0)
+        self.__arr[:self.__top + 1] = self.__default_value
         self.__top = -1
 
     # Show All Elements    
@@ -112,67 +113,13 @@ class Stack:
         return self.__top + 1
         
     
+         
+
 if __name__ == "__main__":
-    # stack_int = Stack(7)
-    # stack2 = Stack(4)
-    # print(stack_int.size())
-    # print(stack_int.is_empty())
+    stack = Stack(5)
 
-    # stack_int.push(1)
-    # stack_int.push(2)
-    
-    # stack_int.push(3)
-    # stack_int.push(4)
-    # stack_int.push(5)
-    # print(stack_int)
-    # # stack_int.push(10)
-    # stack_int.pop(3)
-    # # stack_int.pop(2)
-    # # stack_int.pop()
-    # # stack_int.pop(20)
+    stack.push(5)
+    stack.push(4)
+    stack.push(3)
 
-
-    # print(stack_int.top())
-    
-    # print(stack_int.display())
-    # # stack_int.clear()
-    # stack2.push(10)
-    # stack2.push(20)
-    # print(stack2.display())
-
-    # stack_int.merge(stack2)
-    
-    # print(stack_int.display())
-    
-    # # print(stack_int.is_empty())
-    # print(stack_int.top())
-    
-    
-    # Balanced Parentheses Using Stack
-    def are_pair(open, close):
-        if open == "(" and close == ")":
-            return True
-        elif open == "{" and close == "}":
-            return True
-        elif open == "[" and close == "]":
-            return True
-        return False
-
-    def are_balanced(exp):
-        exp = str(exp)
-        stack = Stack(100, "str")
-        for i in range(len(exp)):
-            if exp[i] == "(" or exp[i] == "{" or exp[i] == "[":
-                stack.push(exp[i])
-            elif exp[i] == ")" or exp[i] == "}" or exp[i] == "]":
-                if stack.is_empty() or not are_pair(stack.top(), exp[i]):
-                    return False
-                stack.pop()
-        
-        return stack.is_empty()
-    
-    # print(are_balanced("(){}[]"))
-    # print(are_balanced("(){}[]()[[{()}]]"))
-    # print(are_balanced("(){]((]{{"))
-    # print(are_balanced("][}{"))
-
+    print(stack.peek(1))
