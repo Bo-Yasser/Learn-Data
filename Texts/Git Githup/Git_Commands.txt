@@ -65,7 +65,7 @@ git rm --cached       #all use to unstage files from staging area#
 #or#
 git restore --staged 
 
-git clean -n #delete untracked cheanges -n use to know what will delete#
+git clean -n #delete untracked changes -n use to know what will delete#
 git clean -f #delete untracked files or showen files in clean -n#
 
 ############################################################
@@ -78,6 +78,13 @@ git revert #commit hash# -m ""
 
 git reset --hard #commit hash#
 #back all repo history to previous status at specific commit# 
+#and delete untracked files# 
+#by make this commit in head and delete another up commits#
+#should use --force to push#
+
+git reset --soft #commit hash#
+#back all repo history to previous status at specific commit#
+#without delete untracked files let repo at current status# 
 #by make this commit in head and delete another up commits#
 #should use --force to push#
 

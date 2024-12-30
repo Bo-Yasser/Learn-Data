@@ -10,5 +10,5 @@ dtype()      #get what equal python type from numpy types#
 isdtype()    #check if this type a numpy type# 
 issubdtype() #Check if python type is equal to its equivalent in numpy#
 
-.item()      #convert of numpy type one element to python type#
+.item()      #convert one element of numpy type to python type#
 .tolist()    #convert a numpy array to python list with python types#

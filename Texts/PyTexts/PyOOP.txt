@@ -35,6 +35,9 @@ __init__(self)           #self or can be Any name# must be first argument#
 .__str__()  #human readable output of the object#
 .__len__()  #returns length called when use #func# >>  len() on object#
 
+.__iter__() #make object an iterator to loop at it or use next()#
+#when we called self alone and convert to list(self) python search#
+#for __iter__ method to loop on object and back it as list#
 
 
 # 4
