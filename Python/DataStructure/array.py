@@ -9,9 +9,19 @@ class Array:
         self.__arr = np.empty(self.__size, dtype=self.__dtype)
         self.__default_value = self.__arr[0]
         self.__count = 0
+    
+    def __str__(self):
+        if self.is_empty():
+            return "Array is empty."
+        return f"Array{self.display()}"
+    
+    def __iter__(self):
+        return iter(self.__arr[:self.__count])
+    
+    def __contains__(self, value):
+        return self.is_found(value)
 
-
-    def arr_resize(self, new_size):
+    def resize(self, new_size):
 
         if new_size <= self.__size:
             print("New size must be greater than the current size.")
@@ -24,7 +34,7 @@ class Array:
         self.__arr = new_arr
         self.__size = new_size           
 
-    def arr_fill(self, num_elements, elements):
+    def fill(self, num_elements, elements):
 
         if num_elements + self.__count > self.__size:
             raise OverflowError("Number of Elements exceeds Array Size!")
@@ -41,7 +51,7 @@ class Array:
 
         self.__count += num_elements
 
-    def arr_append(self, value):
+    def append(self, value):
         if self.__arr is None:
             raise ValueError("Array not initialized. Please create the array first.")
         
@@ -52,11 +62,11 @@ class Array:
         else:
             raise OverflowError("Array Is Full!")    
            
-    def arr_insert(self, index, value):
+    def insert(self, index, value):
 
         if self.__count >= self.__size:
             raise OverflowError("Array is full. Cannot insert.")
-        if index > self.__size:
+        if index >= self.__size:
             raise OverflowError("Index Out Of Range")
 
         for i in range(self.__count -1 , index -1, -1):
@@ -66,7 +76,7 @@ class Array:
         self.__arr[index] = eval(self.__dtype)(value)
         self.__count += 1
             
-    def arr_delete(self, index):
+    def delete(self, index):
         if index < 0 or index >= self.__count:
             raise IndexError("Index out of bounds")
         
@@ -76,40 +86,65 @@ class Array:
         self.__arr[self.__count -1] = self.__default_value
         self.__count -=1
     
-    def arr_merge(self, merge_arr):
-        
-        new_size = self.__count + len(merge_arr)
+    def merge(self, merge_arr):
+        if not isinstance(merge_arr, Array):
+            raise TypeError("must merge Array with another Array.")
+        new_size = self.__size + len(merge_arr)
         new_arr = np.empty(new_size, dtype=self.__dtype)
         
         new_arr[:self.__count] = self.__arr[:self.__count]
-
-        new_arr[self.__count:] = merge_arr
+        new_arr[self.__count:] = merge_arr.__arr[:merge_arr.__count]
 
         self.__arr = new_arr
         self.__size = new_size
-        self.__count = new_size
+        self.__count += len(merge_arr)
 
-        
+    def is_found(self, element):
+        for i in range(self.__count):
+            if self.__arr[i] == element:
+                return True
+        return False        
 
-    def arr_search(self, key):
+    def search(self, key):
         index = -1
         for i, n in enumerate(self.__arr[:self.__count]):
             if n == key:
                 index = i 
-
         return index    
     
-    def arr_length(self):
+    def peek(self, index):
+        if index < 0 or index >= self.__count:
+            raise IndexError("Index out of range")
+        return self.__arr[index]
+
+    
+    def length(self):
         return self.__count
 
-    def arr_size(self):
+    def size(self):
         return self.__size                        
 
-    def arr_display(self):
-        return self.__arr[:self.__count]        
+    def display(self):
+        if self.is_empty():
+            return []
+        return self.__arr[:self.__count].tolist()     
 
     def is_empty(self):
         return self.__count == 0
+    
+
+    def sort(self, reverse=False):
+        self.__arr[:self.__count] = sorted(self.__arr[:self.__count], reverse=reverse)
+        
+
+    def is_sorted(self):
+        for i in range(self.__count - 1):
+            if self.__arr[i] > self.__arr[i + 1]:
+                return False
+        return True
+    
+    def reverse(self):
+        self.__arr[:self.__count] = self.__arr[:self.__count][::-1]
 
 
 
@@ -118,7 +153,7 @@ class Array:
 
 if __name__ == "__main__":
     arr = Array(5)
-    arr.arr_fill(5, [1,2,3,4,5])
-    arr.arr_delete(3)
-    print(arr.arr_display())
+    arr.fill(5, [1,2,3,4,5])
+    arr.delete(3)
+    print(arr.display())
 
