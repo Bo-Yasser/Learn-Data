@@ -70,6 +70,9 @@ class LinkedQueue:
         return False
     
     def search(self, element):
+        if self.is_empty():
+            raise IndexError("Queue is empty.")
+        
         current = self.__front
         count = 0 
         while current:
@@ -78,6 +81,22 @@ class LinkedQueue:
             count += 1
             current = current.next
         raise ValueError("element not found.")
+    
+    def peek(self, index):
+        if self.is_empty():
+            raise IndexError("Queue is empty.")
+        
+        if index >= self.__count or index < 0:
+            raise IndexError("Index Out Of Range.")
+        
+        current = self.__front 
+        count = 0     
+        while current:
+            if count == index:
+                return current.value
+            count += 1
+            current = current.next
+        raise IndexError("element not found.")
     
     def count(self):
         return self.__count

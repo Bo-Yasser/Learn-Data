@@ -121,10 +121,19 @@ class Queue:
     def display(self):
         if self.is_empty():
             return []
-        return self.__arr[:self.__count].tolist()
+
+        return [self.__arr[(self.__front +i)% self.__size].item() for i in range(self.__count)]
+        # l = []
+        # i = self.__front - 1
+        # while i != self.__rear:
+        #     i = (i + 1)% self.__size
+        #     l.append(self.__arr[i])
+        # return l
     
     def sort(self, reverse=False):
         self.__arr[:self.__count] = sorted(self.__arr[:self.__count], reverse=reverse)
+        self.__front = 0
+        self.__rear = self.__count - 1
         
 
     def is_sorted(self):
@@ -135,7 +144,8 @@ class Queue:
     
     def reverse(self):
         self.__arr[:self.__count] = self.__arr[:self.__count][::-1]
-        
+        self.__front, self.__rear = self.__rear, self.__front
+
 if __name__ == "__main__":
     queue = Queue(5)
 
@@ -144,49 +154,49 @@ if __name__ == "__main__":
     queue.enqueue(7)
     queue.enqueue(8)
     queue.enqueue(9)
-    queue.dequeue()
-    queue.dequeue()
-    queue.dequeue()
-    queue.dequeue()
+    # queue.dequeue()
+    # queue.dequeue()
+    # queue.dequeue()
+    # queue.dequeue()
 
-    queue.enqueue(10)
-    queue.dequeue()
+    # queue.enqueue(10)
+    # queue.dequeue()
 
-    queue.enqueue(20)
-    queue.enqueue(30)
+    # queue.enqueue(20)
+    # queue.enqueue(30)
 
 
     print(queue.display())
 
-    print(queue.is_empty())
-    print(queue.is_full())
+    # print(queue.is_empty())
+    # print(queue.is_full())
 
-    print(queue.front())
-    print(queue.rear())
-
-
-    print(queue.search(30))
-
-    print(queue.size())
-    queue.resize(7)
-    print(queue.size())
+    # print(queue.front())
+    # print(queue.rear())
 
 
-    print(queue)
-    for i in queue:
-        print(i, end="-")
-    if 30 in queue:
-        print("\na4ta")
+    # print(queue.search(30))
+
+    # print(queue.size())
+    # queue.resize(7)
+    # print(queue.size())
 
 
-    queue2 = Queue(3)
-    queue2.enqueue(40)
-    queue2.enqueue(50)
-    print(queue2)
+    # print(queue)
+    # for i in queue:
+    #     print(i, end="-")
+    # if 30 in queue:
+    #     print("\na4ta")
 
-    queue.merge(queue2)
-    print(queue)
 
-    queue.sort()
-    print(queue.display())
-    print(queue.is_sorted())
+    # queue2 = Queue(3)
+    # queue2.enqueue(40)
+    # queue2.enqueue(50)
+    # print(queue2)
+
+    # queue.merge(queue2)
+    # print(queue)
+
+    # queue.sort()
+    # print(queue.display())
+    # print(queue.is_sorted())

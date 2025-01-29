@@ -49,9 +49,7 @@ class LinkedStack:
                 return current.value
             current = current.next
             count -= 1
-
         raise IndexError("element not found.")
-    
     
     def push(self, value):
         new_node = Node(value)
@@ -135,11 +133,11 @@ class LinkedStack:
         return self.__top + 1
 
     def top(self):
-        if not self.is_empty():
-            return self.__head.value
+        if self.is_empty():
+            raise IndexError("Stack is empty.")
+        return self.__head.value
     
-    def size(self):
-        return self.__top + 1
+
 
 
 

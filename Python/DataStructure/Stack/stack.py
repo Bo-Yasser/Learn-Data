@@ -140,6 +140,17 @@ class Stack:
     # return length for stack
     def count(self):
         return self.__top + 1
+    
+    def resize(self, new_size):
+        if new_size <= self.__size:
+            raise ValueError("new size must be larger than current size.")
+        
+        new_arr = np.empty(new_size ,dtype=self.__dtype)
+        for i in range(self.__top + 1):
+            new_arr[i] = self.__arr[i]
+        
+        self.__arr = new_arr
+        self.__size = new_size
         
     
          
