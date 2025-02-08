@@ -123,11 +123,23 @@ class Queue:
             return []
 
         return [self.__arr[(self.__front +i)% self.__size].item() for i in range(self.__count)]
+        
+        # 2
         # l = []
-        # i = self.__front - 1
+        # for i in range(self.__count):
+        #     l.append(self.__arr[(self.__front +i)% self.__size].item())
+        #     # 2
+        #     # i = (self.__front +i)% self.__size
+        #     # l.append(self.__arr[i].item())
+        # return l
+    
+        # 3
+        # l = []
+        # i = self.__front
         # while i != self.__rear:
+        #     l.append(self.__arr[i].item())
         #     i = (i + 1)% self.__size
-        #     l.append(self.__arr[i])
+        # l.append(self.__arr[self.__rear].item())
         # return l
     
     def sort(self, reverse=False):
@@ -154,15 +166,15 @@ if __name__ == "__main__":
     queue.enqueue(7)
     queue.enqueue(8)
     queue.enqueue(9)
-    # queue.dequeue()
-    # queue.dequeue()
+    queue.dequeue()
+    queue.dequeue()
     # queue.dequeue()
     # queue.dequeue()
 
-    # queue.enqueue(10)
+    queue.enqueue(10)
     # queue.dequeue()
 
-    # queue.enqueue(20)
+    queue.enqueue(20)
     # queue.enqueue(30)
 
 
@@ -200,3 +212,4 @@ if __name__ == "__main__":
     # queue.sort()
     # print(queue.display())
     # print(queue.is_sorted())
+

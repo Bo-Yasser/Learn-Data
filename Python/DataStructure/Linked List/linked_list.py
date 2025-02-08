@@ -9,7 +9,10 @@ class LinkedList:
     def __init__(self):
         self.__head = None
         self.__count = 0
-
+    
+    def __len__(self):
+        return self.__count
+    
     def __str__(self):
             return " -> ".join(str(value) for value in self) + " -> None"
 
@@ -207,9 +210,6 @@ class LinkedList:
             
             current = current.next
         raise ValueError(f"Element {element} not found in the list")
-        
-    def count(self):
-        return self.__count
 
     def clear(self):
         self.__head = None
@@ -300,11 +300,11 @@ if __name__ == "__main__":
     # link.clear()
     print(link.remove_all_after(10))
     print(link.display())
-    print(link.count())
+    print(len(link))
     # link.reverse()
     # print(link)
-    print(link.get_tail())
-    print(link.is_empty())
+    # print(link.get_tail())
+    # print(link.is_empty())
 
     # print(link.is_found(50))
 
