@@ -98,7 +98,7 @@ class LinkedListTail:
                 self.insert_first(new_value)
                 return
         
-        elif self.__tail.value == value:
+        elif self.__tail.value == value or self.__count == 1:
             self.insert_last(new_value)
             return
         
@@ -113,6 +113,12 @@ class LinkedListTail:
             current = current.next
         raise ValueError(f"Value {value} not found in the list")
     
+    def insert_no_duplicate(self, value):  
+        if self.search(value) == -1:
+            self.insert_last(value)
+        else:
+            print("Element already in Array.")
+        
     def fill(self, values):
         if not values:
             raise ValueError("Invalid type.")
@@ -456,6 +462,12 @@ class LinkedListTail:
         return True
 
     def reverse(self):
+        if self.is_empty():
+            raise IndexError("List is empty.")
+        
+        if self.__count <= 1:  
+            return
+        
         prev = None
         current = self.__head
         while current:

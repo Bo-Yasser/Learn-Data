@@ -105,7 +105,7 @@ class CircularLinkedList:
                 self.insert_first(new_value)
                 return
         
-        elif self.__tail.value == value:
+        elif self.__tail.value == value or self.__count == 1:
             self.insert_last(new_value)
             return
         
@@ -120,6 +120,12 @@ class CircularLinkedList:
             current = current.next
         raise ValueError(f"Value {value} not found in the list")
     
+    def insert_no_duplicate(self, value):  
+        if self.search(value) == -1:
+            self.insert_last(value)
+        else:
+            print("Element already in Array.")
+        
     def fill(self, values):
         if not values:
             raise ValueError("Invalid type.")
@@ -213,7 +219,7 @@ class CircularLinkedList:
             raise IndexError("List is empty.")
         
         if self.__count == 1 or self.__tail.value == value :
-            raise IndexError(f"Out of range! nothing before {value}.")
+            raise IndexError(f"Out of range! nothing after {value}.")
         
 
         current = self.__head
@@ -306,6 +312,31 @@ class CircularLinkedList:
 
         raise ValueError(f"Element {value} not found in the list.")
     
+    def remove_duplicate(self):
+        if self.is_empty():
+            raise IndexError("List is empty.")
+
+        current = self.__head
+
+        while True:
+            prev = current
+            current_two = current.next
+
+            while current_two != self.__head:
+                if current.value == current_two.value:
+                    prev.next = current_two.next  
+                    current_two = current_two.next
+                    self.__count -= 1
+                else:
+                    prev = current_two
+                    current_two = current_two.next
+            
+            current = current.next
+
+            if current == self.__head:
+                break
+
+
     def display(self):
         return list(self)
     
@@ -394,7 +425,7 @@ class CircularLinkedList:
         if not isinstance(other_list, CircularLinkedList):
             raise TypeError("must merge List with another List.")
         current = other_list.__head
-        while current:
+        while current != self.__tail:
             self.insert_last(current.value)
             current = current.next
  
@@ -414,6 +445,9 @@ class CircularLinkedList:
         return True
 
     def reverse(self):
+        if self.is_empty():
+            raise IndexError("List is empty.")
+        
         if self.__count <= 1:  
             return
         
@@ -430,31 +464,32 @@ class CircularLinkedList:
         self.__head = prev
         self.__tail.next = self.__head  
 
+if __name__ == "__main__":
+    l = CircularLinkedList()
 
-l = CircularLinkedList()
+    l.insert_first(1)
+    l.insert_first(1)
 
-l.insert_first(1)
-l.insert_first(2)
+    l.insert_last(1)
+    l.insert_last(1)
+    l.insert_last(1)
 
-l.insert_last(5)
-l.insert_last(4)
-l.insert_last(6)
+    # l.remove_before(1)
+    # l.remove_last()
+    # l.remove_last()
+    # l.remove_last()
+    # l.remove_last()
+    # l.remove_last()
 
-l.remove_before(6)
-# l.remove_last()
-# l.remove_last()
-# l.remove_last()
-# l.remove_last()
-# l.remove_last()
+    # l.remove_all_after(4)
+    # l.remove_all_before(1)
+    # l.reverse()
+    # print(l.get_head())
+    # print(l.get_tail())
 
-# l.remove_all_after(4)
-# l.remove_all_before(1)
-# l.reverse()
-# print(l.get_head())
-# print(l.get_tail())
-
-# l.pop(7)
-print(l)
-# print(l.peek(3))
-# print(l.search(7))
-# print(len(l))
+    # l.pop(7)
+    # l.remove_duplicate()
+    print(l)
+    # print(l.peek(3))
+    # print(l.search(7))
+    print(len(l))

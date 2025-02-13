@@ -112,6 +112,12 @@ class LinkedList:
         current.next = new_node
         self.__count += 1
     
+    def insert_no_duplicate(self, value):  
+        if self.search(value) == -1:
+            self.insert_last(value)
+        else:
+            print("Element already in Array.")
+    
     def get_tail(self):
         if self.is_empty():
             raise ValueError("The List Is Empty!")
@@ -268,6 +274,12 @@ class LinkedList:
         return True
 
     def reverse(self):
+        if self.is_empty():
+            raise IndexError("List is empty.")
+        
+        if self.__count <= 1:  
+            return
+        
         prev = None
         current = self.__head
         while current:
