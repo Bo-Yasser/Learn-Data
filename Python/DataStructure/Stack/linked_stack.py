@@ -1,12 +1,13 @@
-class Node:
+class StackNode:
     def __init__(self, value):
         self.value = value
         self.next = None
 
 class LinkedStack:
-    def __init__(self):
+    def __init__(self, return_nodes=False):
         self.__head = None
         self.__top = -1
+        self.return_nodes = return_nodes
 
     def __str__(self):
         return f"Stack({list(self)})"
@@ -15,11 +16,14 @@ class LinkedStack:
 
         current = self.__head
         while current:
-            yield current.value
+            yield current.value if self.return_nodes is False else current
             current = current.next
     
     def __contains__(self, value):
         return self.is_found(value)
+    
+    def __bool__(self):
+        return not self.is_empty()
     
     def search(self, element):
         if self.is_empty():
@@ -46,40 +50,42 @@ class LinkedStack:
         count = self.__top 
         while current:
             if count == index:
-                return current.value
+                return current.value if self.return_nodes is False else current
             current = current.next
             count -= 1
         raise IndexError("element not found.")
     
     def push(self, value):
-        new_node = Node(value)
+        new_node = StackNode(value)
         
         new_node.next = self.__head
         self.__head = new_node
         self.__top += 1
         
-    def pop(self, value=None):
+    def pop(self):
         if self.is_empty():
             raise IndexError("Stack Is Empty. Nothing to Pop.")
+        
+        popped_value = self.__head
+        self.__head = self.__head.next  
+        self.__top -= 1
+        return popped_value if self.return_nodes else popped_value.value
 
-
-        if value is None or self.__head.value == value:
-            popped_value = self.__head.value
-            self.__head = self.__head.next
-            self.__top -= 1
-            return popped_value
+    def remove(self, value):
+        if self.is_empty():
+            raise IndexError("Stack Is Empty. Nothing to Pop.")
 
         current = self.__head
         while current.next:
             if current.next.value == value:
-                popped_value = current.next.value
+                popped_value = current.next
                 current.next = current.next.next
                 self.__top -= 1
-                return popped_value
+                return popped_value.value if self.return_nodes is False else popped_value
             current = current.next
 
         raise IndexError(f"Value {value} not found in the stack.")
-
+    
     def sort(self, reverse=False):
         values = list(self)
         values.sort(reverse=reverse)
@@ -119,7 +125,7 @@ class LinkedStack:
         self.__top = -1
     
     def is_empty(self):
-        return self.__head == None
+        return self.__top == -1
     
     def is_found(self, element):
         current = self.__head
@@ -135,7 +141,7 @@ class LinkedStack:
     def top(self):
         if self.is_empty():
             raise IndexError("Stack is empty.")
-        return self.__head.value
+        return self.__head.value if self.return_nodes is False else self.__head
     
 
 
@@ -144,38 +150,39 @@ class LinkedStack:
 
 if __name__ == "__main__":
     stack = LinkedStack()
-    stack2= LinkedStack()
+    # stack2= LinkedStack()
     
     stack.push(10)
     stack.push(20)
     stack.push(30)
-    stack.pop(20)
-    print(stack.top())
+    stack.pop()
+    # print(stack.top())
     print(stack.display())
 
-    print("#"* 50)
-    stack.pop()
+    # print("#"* 50)
+    # stack.pop()
     stack.push(30)
     stack.push(40)
-    print(stack.top())
+    stack.remove(20)
+    # print(stack.top())
     print(stack.display())
 
-    print("#"* 50)
-    print(stack.peek(0))
-    print(stack.search(40))
+    # print("#"* 50)
+    # print(stack.peek(0))
+    # print(stack.search(40))
 
-    print("#"* 50)
-    stack.reverse()
-    print(stack.display())
-    print(stack.top())
+    # print("#"* 50)
+    # stack.reverse()
+    # print(stack.display())
+    # print(stack.top())
 
-    print("#"* 50)
-    print(stack.peek(0))
-    print(stack.search(40))
+    # print("#"* 50)
+    # print(stack.peek(0))
+    # print(stack.search(40))
 
-    stack.sort()
-    print(stack.is_sorted())
-    print(stack.display())
+    # stack.sort()
+    # print(stack.is_sorted())
+    # print(stack.display())
 
     # print("#"* 50)
     # print("#"* 50)
@@ -197,3 +204,5 @@ if __name__ == "__main__":
     #     print(i, end='-')
     # if 10 in stack:
     #     print("\na4ta")
+
+    print(bool(stack))
