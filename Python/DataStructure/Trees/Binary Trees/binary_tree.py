@@ -1,4 +1,4 @@
-# إضافة مسار الجذر (مكان فولدر DataStructure)
+
 import sys
 sys.path.append("h:/Programing/Python/DataStructure")
 
@@ -62,5 +62,5 @@ tree.root.left.left = Node("D")
 tree.root.left.right = Node("E")
 tree.root.right.left = Node("F")
 
-# تنفيذ الـ traversal
+
 tree.post_order(tree.root)
