@@ -184,7 +184,8 @@ ____((( dictionary {} )))____
 
 dict1 |= dict2  #use to equal two different dict values# 
 
-.get()  dict.get(dict)[key]   >>>  dict[key]   dict[dict][key]  
+.get() - dict.get(dict)[key]   >>>  dict[key] - dict[dict][key]  
+.get(key, value)  >> avoid error if key not found by retrun value 
 
 .update()  >>  dict[key] = value
 dict.fromkeys()
