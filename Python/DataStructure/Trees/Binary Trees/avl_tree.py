@@ -1,15 +1,16 @@
 import sys
 sys.path.append("h:/Programing/Python/DataStructure")
-from Queue import linked_queue as lq
 
+from Queue import linked_queue as lq
 class Node:
     def __init__(self, value):
         self.value = value
         self.left = None
         self.right = None
+        self.height = 1
 
 
-class BST:
+class AVL:
 
     def __init__(self):
         self.__root = None
@@ -20,9 +21,9 @@ class BST:
     
     def __str__(self):
         return f"{list(self.level_order())}"
-
-    def __contains__(self, value):
-        return self.is_found(value)
+    
+    def __bool__(self):
+        return not self.is_empty()
     
     def __iter__(self):
         def _in_order(root):
@@ -32,36 +33,89 @@ class BST:
                 yield from _in_order(root.right)
         
         return _in_order(self.__root)
-
-
+    
     def add(self, value):
         
         def _add(current, value):
+            if not current:
+                return Node(value)
+            
             if value < current.value:
-                if current.left == None:
-                    current.left = Node(value)
-                else:    
-                    _add(current.left, value)
+                current.left = _add(current.left, value)
             
             else:
-                if current.right == None:
-                    current.right = Node(value)
-                else:
-                    _add(current.right, value)
-        
-        if self.__root == None:
-            self.__root = Node(value)
-        else:
-            _add(self.__root, value)
-        
+                current.right = _add(current.right, value)
+
+            current.height = 1 + max(self.get_height(current.left), self.get_height(current.right))
+
+            balance = self.get_balance(current)
+
+            # LL
+            if balance > 1 and value < current.left.value:
+                return self.right_rotate(current)
+            
+            # RR
+            if balance < -1 and value > current.right.value:
+                return self.left_rotate(current)
+            
+            # LR
+            if balance > 1 and value > current.left.value:
+                current.left = self.left_rotate(current.left)
+                return self.right_rotate(current)
+            
+            # RL
+            if balance < -1 and value < current.right.value:
+                current.right = self.right_rotate(current.right)
+                return self.left_rotate(current)
+            
+            return current
+
+
+
+        self.__root = _add(self.__root, value)
         self.__count += 1
             
+    
+    def get_height(self, node):
+        if not node:
+            return 0
+        return node.height
+    
+    def get_balance(self, node):
+        if not node:
+            return 0
+        return self.get_height(node.left) - self.get_height(node.right)
+    
+    
+    def right_rotate(self, z):
+        y = z.left
+        t3 = y.right
+
+        y.right = z
+        z.left = t3
+
+        z.height = 1 + max(self.get_height(z.left), self.get_height(z.right))
+        y.height = 1 + max(self.get_height(y.left), self.get_height(y.right))
+        return y
+    
+    def left_rotate(self, z):
+        y = z.right
+        t2 = y.left
+
+        y.left = z
+        z.right = t2
+        
+        z.height = 1 + max(self.get_height(z.left), self.get_height(z.right))
+        y.height = 1 + max(self.get_height(y.left), self.get_height(y.right))
+        return y
+
+    
     def delete(self, value):
         if self.is_empty():
             raise IndexError("Tree is Empty")
         def _delete(current, value):
             if current is None:
-                return current
+                raise ValueError("Value not Found!")
             
             elif value < current.value:
                 current.left = _delete(current.left, value)
@@ -73,7 +127,7 @@ class BST:
                 if not current.left and not current.right:
                     self.__count -= 1
                     return None
-                
+            
                 elif current.right is None:
                     self.__count -= 1
                     return current.left
@@ -87,10 +141,42 @@ class BST:
                     current.value = succesor
                     current.right = _delete(current.right, succesor)
 
+            current.height = 1 + max(self.get_height(current.left), self.get_height(current.right)) 
+            
+            balance = self.get_balance(current)
+            
+            # LL
+            if balance > 1 and self.get_balance(current.left) >= 0:
+                return self.right_rotate(current)
+            
+            # LR
+            if balance > 1 and self.get_balance(current.left) < 0:
+                current.left = self.left_rotate(current.left)
+                return self.right_rotate(current)
+            
+            # RR
+            if balance < -1 and self.get_balance(current.right) <= 0:
+                return self.left_rotate(current)
+            
+            # RL
+            if balance < -1 and self.get_balance(current.right) > 0:
+                current.right = self.right_rotate(current.right)
+                return self.left_rotate(current)
+            
             return current
 
         self.__root = _delete(self.__root, value) 
+        
 
+    def in_order(self):
+        def _in_order(root):
+            if root:
+                _in_order(root.left)
+                print(root.value, end=" ")
+                _in_order(root.right)
+        _in_order(self.__root)
+
+    
     def pre_order(self):
         def _pre_order(root):
             if root:
@@ -106,14 +192,6 @@ class BST:
                 _post_order(root.right)
                 print(root.value, end=" ")
         _post_order(self.__root)
-
-    def in_order(self):
-        def _in_order(root):
-            if root:
-                _in_order(root.left)
-                print(root.value, end=" ")
-                _in_order(root.right)
-        _in_order(self.__root)
 
     def level_order(self):
         def _level_order(root):
@@ -133,8 +211,7 @@ class BST:
                     queue.enqueue(current.right)
             return l
         return _level_order(self.__root)
-                
-
+    
     def search(self, value):
         if self.is_empty():
             raise IndexError("Tree is Empty")
@@ -167,60 +244,6 @@ class BST:
                 return _is_found(current.right, value)
         
         return _is_found(self.__root, value)
-                
-
-    def min(self, root=None):
-        if self.is_empty():
-            raise IndexError("Tree is Empty")
-
-        def _min(root):
-            if root.left:
-                return _min(root.left)
-
-            return root.value
-        if root:
-            return _min(root)
-            
-        return _min(self.__root)
-    
-    def max(self, root=None):
-        if self.is_empty():
-            raise IndexError("Tree is Empty")
-
-        def _max(root):
-            if root.right:
-                return _max(root.right)
-            return root.value
-        if root:
-            return _max(root)      
-        
-        return _max(self.__root)
-
-    def height(self, value=None):
-        if self.__count == 0:
-            return -1
-
-        def _height(root):
-            if root is None:
-                return -1
-            
-            left_subtree = _height(root.left)
-            right_subtree = _height(root.right)
-            
-            return max(left_subtree, right_subtree) + 1
-        
-        if value is None:
-            return _height(self.__root)
-        else:
-            node = self.search(value)
-            if node is None:
-                raise IndexError("Value Not found")
-            return _height(node)
-    
-    
-    def is_empty(self):
-        return self.__count == 0      
-
 
     def inorder_successor(self, value):
         if not self.is_found(value):
@@ -270,11 +293,53 @@ class BST:
             
         _inorder_predecessor(self.__root, value)
         return predecessor
+    
+    def min(self, root=None):
+        if self.is_empty():
+            raise IndexError("Tree is Empty")
+
+        def _min(root):
+            if root.left:
+                return _min(root.left)
+
+            return root.value
+        if root:
+            return _min(root)
+            
+        return _min(self.__root)
+    
+    def max(self, root=None):
+        if self.is_empty():
+            raise IndexError("Tree is Empty")
+
+        def _max(root):
+            if root.right:
+                return _max(root.right)
+            return root.value
+        if root:
+            return _max(root)      
+        
+        return _max(self.__root)
+    
+    def is_balanced(self):
+        def _check(node):
+            if not node:
+                return True
+            
+            balance = self.get_balance(node)
+            if balance > 1 or balance < -1:
+                return False
+            return _check(node.left) and _check(node.right)
+
+        return _check(self.__root) 
+    
+    def is_empty(self):
+        return self.__count == 0   
 
     def clear(self):
         self.__root = None
-        self.__count = 0         
-
+        self.__count = 0
+    
     def depth(self, value=None):
         if self.__count == 0:
             return -1
@@ -322,55 +387,19 @@ class BST:
     def leafSimilar(self, root1, root2):
         return self.get_leaves(root1) == self.get_leaves(root2)
 
-# اختبار BST
-bst = BST()
-bst2 = BST()
-
-
-# إضافة عناصر
-bst.add(50)
-bst.add(30)
-bst.add(70)
-bst.add(20)
-bst.add(10)
-
-bst2.add(50)
-bst2.add(30)
-bst2.add(70)
-bst2.add(20)
-bst2.add(10)
-# bst.add(60)
-# bst.add(80)
-
-# الطباعة باستخدام طرق الترافيرسال
-# print("In-Order Traversal:")
-# bst.in_order()  # يجب أن يطبع 20 30 40 50 60 70 80
-# print("\nPre-Order Traversal:")
-# bst.pre_order()  # يجب أن يطبع 50 30 20 40 70 60 80
-# print("\nPost-Order Traversal:")
-# bst.post_order()  # يجب أن يطبع 20 40 30 60 80 70 50
-# print("\nLevel-Order Traversal:")
-# print(bst.level_order())  # يجب أن يطبع [50, 30, 70, 20, 40, 60, 80]
-
-# # اختبار البحث
-# print("\nSearch for 40:", bst.search(40))  # يجب أن يعيد العقدة التي تحتوي على 40
-# print("Search for 100:", bst.search(100))  # يجب أن يعيد None أو يرفع استثناء
-
-# # اختبار الحذف
-# bst.delete(40)  # حذف العقدة 40
-# print("\nIn-Order Traversal after deletion of 40:")
-# bst.in_order()  # يجب أن يطبع 20 30 50 60 70 80
-
-# # اختبار الاستبدال بالـ successor
-# print("\nInorder Successor of 30:", bst.inorder_successor(30))  # يجب أن يعيد 50
-
-# # اختبار الحذف بعد التعديل
-# bst.delete(50)  # حذف الجذر
-# print("\nIn-Order Traversal after deletion of root 50:")
-# bst.in_order()  # يجب أن يطبع 20 30 60 70 80
+b = AVL()
 
 
 
-print(bst.level_order())
-# print(bst.get_leaves())
-print(bst.leafSimilar(bst, bst2))
+b.add(13)
+b.add(11)
+b.add(15)
+b.add(12)
+b.add(10)
+b.add(6)
+
+b.delete(6)
+# b.delete(7)
+print(b.level_order())
+
+print(b.is_balanced())

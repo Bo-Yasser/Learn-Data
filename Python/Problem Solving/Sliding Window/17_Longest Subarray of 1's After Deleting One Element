@@ -1,0 +1,23 @@
+class Solution(object):
+    def longestSubarray(self, nums):
+
+        left = 0
+        k = 1
+        for r in range(len(nums)):
+            if nums[r] != 1:
+                k -= 1
+
+            if k < 0:
+                if nums[left] != 1:
+                    k += 1
+                
+                left += 1
+
+        return r - left
+
+            
+
+    
+b = Solution()
+nums = [0,1,1,1,0,1,1,0,1]
+print(b.longestSubarray(nums))

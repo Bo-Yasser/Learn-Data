@@ -227,20 +227,20 @@
 #     return floor(time * .5)
 
 
-# 13
+13
 
-# def grow(arr):
+def grow(arr):
 
-#     index = arr[0]
-#     for a in arr[1:]:
-#         index *= a 
-#     return index
+    index = arr[0]
+    for a in arr[1:]:
+        index *= a 
+    return index
 # from functools import reduce 
 # def grow(arr):
     
 #     return reduce(lambda x, y: x * y, arr) 
 
-# print(grow([1, 2, 3, 4]))
+print(grow([1, 2, 3, 4]))
 
 
 # 14
@@ -822,14 +822,14 @@
 
 # 44
 
-def sum_of_differences(arr):
-    index = arr[0]
-    list = []
-    if len(arr) > 0:
-        for a in arr[1:]:
-            index -= a
-            for i in arr[:]:
-                index += a
-        return index
+# def sum_of_differences(arr):
+#     index = arr[0]
+#     list = []
+#     if len(arr) > 0:
+#         for a in arr[1:]:
+#             index -= a
+#             for i in arr[:]:
+#                 index += a
+#         return index
 
-print(sum_of_differences([-3, -2, -1]))
+# print(sum_of_differences([-3, -2, -1]))

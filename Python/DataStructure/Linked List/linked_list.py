@@ -196,7 +196,8 @@ class LinkedList:
         self.__count -= 1
     
     def remove_all_after(self, element):
-        
+        if self.is_empty():
+            raise ValueError("List is Empty")       
         current = self.__head
         removed_elements = []
         while current:
@@ -217,6 +218,26 @@ class LinkedList:
             current = current.next
         raise ValueError(f"Element {element} not found in the list")
 
+
+    def deleteMiddle(self):
+
+        if self.is_empty():
+            raise ValueError("List is Empty")
+        curr = self.__head
+        if self.__count == 1:
+            self.__head = None
+            self.__count -= 1
+            return
+           
+        prev = None
+        for i in range(self.__count // 2):
+            prev = curr
+            curr = curr.next
+
+        prev.next = curr.next
+        self.__count -= 1
+        
+        
     def clear(self):
         self.__head = None
         self.__count = 0
@@ -265,6 +286,18 @@ class LinkedList:
         for value in values:
             self.insert_last(value)
     
+    def selection_sort(self, reverse=False):
+        current = self.__head
+        if not reverse:
+            for i in range(self.__count - 2):
+                minidx = current
+                com = current
+                for j in range(i + 1, self.__count):
+                    if minidx.value > com.next.value:
+                        minidx.value, com.next.value = com.next.value, minidx.value
+                
+                current = current.next
+
     def is_sorted(self):
         current = self.__head
         while current and current.next:
@@ -289,11 +322,107 @@ class LinkedList:
             current = next_node
         self.__head = prev
 
+    def oddEvenList(self):
+        if self.is_empty():
+            raise IndexError("List is empty.")
+        
+        if self.__count < 3:
+            return
+        
+        
+        even_head = self.__head.next
+        even_tail = even_head
+        odd_head= self.__head
+        odd_tail = odd_head
+        
+        curr = even_tail.next
+        count = 1
+        while curr:
+
+            if count % 2 != 0:
+                odd_tail.next = curr
+                odd_tail = curr
+                
+            if count % 2 == 0:
+                even_tail.next = curr
+                even_tail = curr
+            
+            
+            curr = curr.next
+            count += 1
+        
+
+        odd_tail.next = even_head
+        even_tail.next = None
+        self.__head = odd_head
+
+    # O(n) space complexity and O(n) time complexity
+    # def pairSum(self):
+    #     if self.is_empty():
+    #         raise IndexError("List is empty.")
+        
+    #     if self.__count == 2:
+    #         return self.__head.value + self.__head.next.value
+
+    #     curr = self.__head
+    #     l = []
+    #     while curr:
+    #         l.append(curr.value)
+    #         curr = curr.next 
+
+    #     n = len(l)
+    #     pair = float("-inf")
+    #     for i in range(len(l) // 2):
+    #         twin_sum = l[i] + l[n - 1 - i]
+    #         if twin_sum > pair:
+    #             pair = twin_sum
+
+    #     return pair
+
+    # O(1) space complexity and O(n) time complexity
+    def pairSum(self):
+        if self.is_empty():
+            raise IndexError("List is empty.")
+        
+        if self.__count == 2:
+            return self.__head.value + self.__head.next.value
+
+        # get the mid element of list to split the list
+        fast = self.__head
+        slow = fast 
+        while fast and fast.next:
+            fast = fast.next.next
+            slow = slow.next
+
+
+        # reverse the second half of list 
+        # to make each element match his twin or be in the same order or index
+        curr = slow
+        prev = None
+        while curr:
+            next_node = curr.next
+            curr.next = prev
+            prev = curr
+            curr = next_node
+
+        # sum every twin to get the highest pair sum
+        first = self.__head
+        second = prev
+        pair = float("-inf")
+        while second:
+            twin_sum = int(first.value) + int(second.value)
+            if twin_sum > pair:
+                pair = twin_sum
+
+            first = first.next
+            second = second.next
+        
+        return pair
 
 if __name__ == "__main__":
     link = LinkedList()
 
-    print(link.is_empty())
+    # print(link.is_empty())
 
     link.insert_last(10)
     link.insert_last(20)
@@ -302,17 +431,21 @@ if __name__ == "__main__":
 
     link.insert_first(40)
 
+    # link.insert_before(30,70)
 
-    link.insert_before(30,70)
-
-    link.insert_at_position(50, 3)
-
+    # link.insert_at_position(50, 3)
+    # link.selection_sort()
+    # link.deleteMiddle()
+    # link.oddEvenList()
+    
+    print(link.display())
+    print(link.pairSum())
     # link.remove(30)
     # link.replace(40, 11)
     # link.clear()
-    print(link.remove_all_after(10))
-    print(link.display())
-    print(len(link))
+    # print(link.remove_all_after(10))
+    # print(link.display())
+    # print(len(link))
     # link.reverse()
     # print(link)
     # print(link.get_tail())
